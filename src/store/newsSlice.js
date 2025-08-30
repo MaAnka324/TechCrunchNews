@@ -3,9 +3,9 @@ import { fetchNews } from '../services/newsAPI';
 
 export const getNews = createAsyncThunk(
   'news/getNews',
-  async ({ category, query }) => {
-    const articles = await fetchNews({ category, q: query });
-    return articles;
+  async ({ category, query, page, pageSize }) => {
+    const response = await fetchNews({ category, q: query, page, pageSize });
+    return response;
   }
 );
 
@@ -33,7 +33,11 @@ const newsSlice = createSlice({
       })
       .addCase(getNews.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.articles = action.payload;
+        if (action.payload && action.payload.articles) {
+          state.articles = action.payload.articles;
+        } else {
+          state.articles = [];
+        }
       })
       .addCase(getNews.rejected, (state, action) => {
         state.status = 'failed';
