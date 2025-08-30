@@ -17,7 +17,7 @@ export default function Home() {
 
   const handlePageSizeChange = (size: number) => {
     setPageSize(size);
-    setCurrentPage(1); // сбросить на первую страницу при смене размера
+    setCurrentPage(1); 
   };
 
   return (

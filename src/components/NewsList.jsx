@@ -12,7 +12,7 @@ export default function NewsList({ page = 1, pageSize = 20, setTotalPages }) {
   useEffect(() => {
     const fetch = async () => {
       const result = await dispatch(getNews({ category, query, page, pageSize }));
-      // result.payload может быть массивом статей, но нужен totalResults
+      
       if (result.payload && result.payload.totalResults) {
         setTotalResults(result.payload.totalResults);
         if (setTotalPages) {
