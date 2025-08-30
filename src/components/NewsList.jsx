@@ -29,12 +29,16 @@ export default function NewsList({ page = 1, pageSize = 20, setTotalPages }) {
   if (status === 'failed') return <p>Error loading news</p>;
 
   return (
-    <div>
-      {Array.isArray(articles)
-        ? articles.map((article, index) => (
-            <NewsItem key={index} article={article} />
-          ))
-        : null}
+    <div style={{ width: '100%', maxWidth: 1500, margin: '0 auto' }}>
+      {Array.isArray(articles) && articles.length > 0 ? (
+        articles.map((article, index) => (
+          <NewsItem key={index} article={article} />
+        ))
+      ) : (
+        <p style={{ textAlign: 'center', color: '#888', marginTop: '2em' }}>
+          No news found for this search.
+        </p>
+      )}
     </div>
   );
 }
