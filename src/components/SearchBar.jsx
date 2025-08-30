@@ -13,8 +13,17 @@ export default function SearchBar() {
 
   return (
     <div>
-      <input value={input} onChange={(e) => setInput(e.target.value)} />
-      <button onClick={handleSearch}>Search</button>
+        <input
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          className="border border-white bg-transparent text-white px-2 py-2 rounded"
+        />
+      <button
+        onClick={handleSearch}
+        className="border border-white bg-transparent text-white px-2 py-2 rounded ml-2 transition-all duration-200 hover:bg-white hover:text-black hover:scale-105 active:scale-95 active:bg-gray-200 active:text-black"
+      >
+        Search
+      </button>
     </div>
   );
 }
