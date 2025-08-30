@@ -1,12 +1,10 @@
-// /store/newsSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { fetchNews } from '../services/newsAPI';
 
-// Асинхронная санка для загрузки новостей
 export const getNews = createAsyncThunk(
   'news/getNews',
   async ({ category, query }) => {
-    const articles = await fetchNews(category, query);
+    const articles = await fetchNews({ category, q: query });
     return articles;
   }
 );
