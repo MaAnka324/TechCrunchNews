@@ -1,4 +1,3 @@
-// /services/newsAPI.js
 import axios from 'axios';
 
 
@@ -36,18 +35,12 @@ export const fetchNews = async (options = {}) => {
   } = options;
 
   const url = `${BASE_URL}/${endpoint}`;
-  const params = {
+    const params = {
     apiKey: API_KEY,
-    q,
-    category,
-    sources,
-    domains,
-    from,
-    to,
-    sortBy,
-    pageSize,
-    country: endpoint === 'top-headlines' ? (country || 'us') : country,
-  };
+    ...options,
+    country: endpoint === 'top-headlines' ? (options.country || 'us') : options.country,
+    };
+    console.log(params);
 
   // Remove undefined params
   Object.keys(params).forEach(key => params[key] === undefined && delete params[key]);
